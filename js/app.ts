@@ -1,3 +1,5 @@
+const WidthCross = 10;
+
 function getRandomColor() : string {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -7,6 +9,9 @@ function getRandomColor() : string {
   return color;
 }
 
+function getRandomArbitrary(min : number, max : number) :number {
+  return Math.random() * (max - min) + min;
+}
 
 function setBackgroundColor(canvas: HTMLCanvasElement) : void {
   let ctx = getContext(canvas);
@@ -31,13 +36,12 @@ function getContext(canvas: HTMLCanvasElement) : CanvasRenderingContext2D {
 }
 
 function createCross(context: CanvasRenderingContext2D, x: number, y: number) : void {
-  const widthCross = 10;
   context.beginPath();
-  context.moveTo(x,y + widthCross/2);
-  context.lineTo(x + widthCross, y + widthCross/2);
+  context.moveTo(x,y + WidthCross/2);
+  context.lineTo(x + WidthCross, y + WidthCross/2);
 
-  context.moveTo(x + widthCross/2 ,y);
-  context.lineTo(x + widthCross/2, y + widthCross);
+  context.moveTo(x + WidthCross/2 ,y);
+  context.lineTo(x + WidthCross/2, y + WidthCross);
 
   context.stroke();
 }
@@ -46,9 +50,13 @@ window.addEventListener("load", function(event) {
   let canvas = getCanvas();
   let context = getContext(canvas);
   setBackgroundColor(canvas);
-  for(let i = 0; i < 50; i++) {
-    const x = Math.random() * canvas.width;
-    const y = Math.random() * canvas.height;
-    createCross(context, x, y);
+  for(let _x = 0; _x < canvas.width; _x += WidthCross) {
+    for(let _y = 0; _y < canvas.height; _y += WidthCross) {
+      if(Math.random() >= 0.7) {
+        const x = getRandomArbitrary(_x, _x + 2*WidthCross);
+        const y = getRandomArbitrary(_y, _y + 2*WidthCross);
+        createCross(context, x, y);
+      }
+    }
   }
 });

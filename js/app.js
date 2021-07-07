@@ -1,3 +1,4 @@
+var WidthCross = 10;
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -5,6 +6,9 @@ function getRandomColor() {
         color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
+}
+function getRandomArbitrary(min, max) {
+    return Math.random() * (max - min) + min;
 }
 function setBackgroundColor(canvas) {
     var ctx = getContext(canvas);
@@ -26,22 +30,25 @@ function getContext(canvas) {
     return context;
 }
 function createCross(context, x, y) {
-    var widthCross = 10;
     context.beginPath();
-    context.moveTo(x, y + widthCross / 2);
-    context.lineTo(x + widthCross, y + widthCross / 2);
-    context.moveTo(x + widthCross / 2, y);
-    context.lineTo(x + widthCross / 2, y + widthCross);
+    context.moveTo(x, y + WidthCross / 2);
+    context.lineTo(x + WidthCross, y + WidthCross / 2);
+    context.moveTo(x + WidthCross / 2, y);
+    context.lineTo(x + WidthCross / 2, y + WidthCross);
     context.stroke();
 }
 window.addEventListener("load", function (event) {
     var canvas = getCanvas();
     var context = getContext(canvas);
     setBackgroundColor(canvas);
-    for (var i = 0; i < 50; i++) {
-        var x = Math.random() * canvas.width;
-        var y = Math.random() * canvas.height;
-        createCross(context, x, y);
+    for (var _x = 0; _x < canvas.width; _x += WidthCross) {
+        for (var _y = 0; _y < canvas.height; _y += WidthCross) {
+            if (Math.random() >= 0.7) {
+                var x = getRandomArbitrary(_x, _x + 2 * WidthCross);
+                var y = getRandomArbitrary(_y, _y + 2 * WidthCross);
+                createCross(context, x, y);
+            }
+        }
     }
 });
 //# sourceMappingURL=app.js.map
