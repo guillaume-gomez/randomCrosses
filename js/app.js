@@ -45,8 +45,8 @@ window.addEventListener("load", function (event) {
     for (var _x = 0; _x < canvas.width; _x += AreaSize) {
         for (var _y = 0; _y < canvas.height; _y += AreaSize) {
             if (Math.random() >= 0.9) {
-                var x = getRandomArbitrary(_x, _x + AreaSize - WidthCross / 2);
-                var y = getRandomArbitrary(_y, _y + AreaSize + WidthCross / 2);
+                var x = getRandomArbitrary(_x, _x + AreaSize - WidthCross);
+                var y = getRandomArbitrary(_y, _y + AreaSize - WidthCross);
                 createCross(context, x, y);
             }
         }
