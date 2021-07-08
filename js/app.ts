@@ -1,4 +1,5 @@
 const WidthCross = 10;
+const AreaSize = 25;
 
 function getRandomColor() : string {
   const letters = '0123456789ABCDEF';
@@ -50,11 +51,11 @@ window.addEventListener("load", function(event) {
   let canvas = getCanvas();
   let context = getContext(canvas);
   setBackgroundColor(canvas);
-  for(let _x = 0; _x < canvas.width; _x += WidthCross) {
-    for(let _y = 0; _y < canvas.height; _y += WidthCross) {
-      if(Math.random() >= 0.7) {
-        const x = getRandomArbitrary(_x, _x + 2*WidthCross);
-        const y = getRandomArbitrary(_y, _y + 2*WidthCross);
+  for(let _x = 0; _x < canvas.width; _x += AreaSize) {
+    for(let _y = 0; _y < canvas.height; _y += AreaSize) {
+      if(Math.random() >= 0.9) {
+        const x = getRandomArbitrary(_x, _x + AreaSize - WidthCross/2);
+        const y = getRandomArbitrary(_y, _y + AreaSize + WidthCross/2);
         createCross(context, x, y);
       }
     }

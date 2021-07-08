@@ -1,4 +1,5 @@
 var WidthCross = 10;
+var AreaSize = 25;
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -41,11 +42,11 @@ window.addEventListener("load", function (event) {
     var canvas = getCanvas();
     var context = getContext(canvas);
     setBackgroundColor(canvas);
-    for (var _x = 0; _x < canvas.width; _x += WidthCross) {
-        for (var _y = 0; _y < canvas.height; _y += WidthCross) {
-            if (Math.random() >= 0.7) {
-                var x = getRandomArbitrary(_x, _x + 2 * WidthCross);
-                var y = getRandomArbitrary(_y, _y + 2 * WidthCross);
+    for (var _x = 0; _x < canvas.width; _x += AreaSize) {
+        for (var _y = 0; _y < canvas.height; _y += AreaSize) {
+            if (Math.random() >= 0.9) {
+                var x = getRandomArbitrary(_x, _x + AreaSize - WidthCross / 2);
+                var y = getRandomArbitrary(_y, _y + AreaSize + WidthCross / 2);
                 createCross(context, x, y);
             }
         }
