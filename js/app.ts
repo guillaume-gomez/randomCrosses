@@ -1,5 +1,6 @@
-const WidthCross = 10;
-const AreaSize = 25;
+/*const WidthCross = 20;
+const AreaSize = 50;
+const LineWidth = 5;*/
 
 function getRandomColor() : string {
   const letters = '0123456789ABCDEF';
@@ -36,28 +37,74 @@ function getContext(canvas: HTMLCanvasElement) : CanvasRenderingContext2D {
   return context;
 }
 
-function createCross(context: CanvasRenderingContext2D, x: number, y: number) : void {
-  context.beginPath();
-  context.moveTo(x,y + WidthCross/2);
-  context.lineTo(x + WidthCross, y + WidthCross/2);
+function createCross(context: CanvasRenderingContext2D, widthCross: number, x: number, y: number, angle: number) : void {
+  context.save();
+  context.rotate(angle);
 
-  context.moveTo(x + WidthCross/2 ,y);
-  context.lineTo(x + WidthCross/2, y + WidthCross);
+  context.beginPath();
+  context.moveTo(x,y + widthCross/2);
+  context.lineTo(x + widthCross, y + widthCross/2);
+
+  context.moveTo(x + widthCross/2 ,y);
+  context.lineTo(x + widthCross/2, y + widthCross);
 
   context.stroke();
+
+  context.restore();
 }
 
-window.addEventListener("load", function(event) {
+function draw(widthCross: number, lineWidth: number, areaSize: number) {
   let canvas = getCanvas();
   let context = getContext(canvas);
+  context.canvas.width  = window.innerWidth;
+  context.canvas.height = window.innerHeight;
+  context.lineWidth = lineWidth;
+
+  context.clearRect(0, 0, canvas.width, canvas.height);
   setBackgroundColor(canvas);
-  for(let _x = 0; _x < canvas.width; _x += AreaSize) {
-    for(let _y = 0; _y < canvas.height; _y += AreaSize) {
-      if(Math.random() >= 0.9) {
-        const x = getRandomArbitrary(_x, _x + AreaSize - WidthCross);
-        const y = getRandomArbitrary(_y, _y + AreaSize - WidthCross);
-        createCross(context, x, y);
+  for(let _x = 0; _x < canvas.width; _x += areaSize) {
+    for(let _y = 0; _y < canvas.height; _y += areaSize) {
+      if(Math.random() >= 0.7) {
+        const x = getRandomArbitrary(_x, _x + areaSize - widthCross);
+        const y = getRandomArbitrary(_y, _y + areaSize - widthCross);
+        const angleInDeg = getRandomArbitrary(0, 10);
+        const angleInRand = angleInDeg * Math.PI / 180;
+        createCross(context, widthCross, x, y, angleInRand);
       }
     }
   }
+}
+
+window.addEventListener("load", function(event) {
+  const widthCrossDom = document.getElementById("width-cross");
+  const areaSizeDom = document.getElementById("area-size");
+  const lineWidthDom = document.getElementById("line-width");
+
+  let widthCross = 20;
+  let areaSize = 50;
+  let lineWidth = 5;
+  draw(widthCross, lineWidth, areaSize);
+
+  if(widthCrossDom) {
+    widthCrossDom.addEventListener("change", (event : any) => {
+      widthCross = event.target.value;
+      draw(widthCross, lineWidth, areaSize);
+    });
+  }
+
+  if(areaSizeDom) {
+    areaSizeDom.addEventListener("change", (event : any) => {
+      areaSize = event.target.value;
+      console.log(areaSize);
+      draw(widthCross, lineWidth, areaSize);
+    });
+  }
+
+  if(lineWidthDom) {
+    lineWidthDom.addEventListener("change", (event : any) => {
+      lineWidth = event.target.value;
+      draw(widthCross, lineWidth, areaSize);
+    });
+  }
+
 });
