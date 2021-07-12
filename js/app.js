@@ -1,6 +1,3 @@
-/*const WidthCross = 20;
-const AreaSize = 50;
-const LineWidth = 5;*/
 function getRandomColor() {
     var letters = '0123456789ABCDEF';
     var color = '#';
@@ -63,6 +60,9 @@ function draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgro
     }
 }
 window.addEventListener("load", function (event) {
+    var settingsDom = document.getElementById("settings");
+    var closeButtonDom = document.getElementById("close-button");
+    var openButtonDom = document.getElementById("open-button");
     var widthCrossDom = document.getElementById("width-cross");
     var areaSizeDom = document.getElementById("area-size");
     var lineWidthDom = document.getElementById("line-width");
@@ -110,6 +110,20 @@ window.addEventListener("load", function (event) {
         backgroundColorDom.addEventListener("change", function (event) {
             backgroundColor = event.target.value;
             draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+        });
+    }
+    // I assume everything is in the dom
+    if (settingsDom && openButtonDom && closeButtonDom) {
+        settingsDom.style.display = "none";
+        openButtonDom.addEventListener("click", function () {
+            settingsDom.style.display = "block";
+            openButtonDom.style.display = "none";
+            closeButtonDom.style.display = "block";
+        });
+        closeButtonDom.addEventListener("click", function () {
+            settingsDom.style.display = "none";
+            openButtonDom.style.display = "block";
+            closeButtonDom.style.display = "none";
         });
     }
 });

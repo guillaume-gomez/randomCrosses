@@ -1,7 +1,3 @@
-/*const WidthCross = 20;
-const AreaSize = 50;
-const LineWidth = 5;*/
-
 function getRandomColor() : string {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -76,6 +72,10 @@ function draw(widthCross: number, lineWidth: number, areaSize: number, percentag
 }
 
 window.addEventListener("load", function(event) {
+  const settingsDom = document.getElementById("settings");
+  const closeButtonDom = document.getElementById("close-button");
+  const openButtonDom = document.getElementById("open-button");
+  
   const widthCrossDom = document.getElementById("width-cross");
   const areaSizeDom = document.getElementById("area-size");
   const lineWidthDom = document.getElementById("line-width");
@@ -130,6 +130,23 @@ window.addEventListener("load", function(event) {
     backgroundColorDom.addEventListener("change", (event : any) => {
       backgroundColor = event.target.value;
       draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+    });
+  }
+
+  // I assume everything is in the dom
+  if(settingsDom && openButtonDom && closeButtonDom) {
+    settingsDom.style.display = "none";
+
+    openButtonDom.addEventListener("click", () => {
+      settingsDom.style.display = "block";
+      openButtonDom.style.display = "none";
+      closeButtonDom.style.display = "block";
+    });
+
+    closeButtonDom.addEventListener("click", () => {
+      settingsDom.style.display = "none";
+      openButtonDom.style.display = "block";
+      closeButtonDom.style.display = "none";
     });
   }
 
