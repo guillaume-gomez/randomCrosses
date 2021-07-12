@@ -63,6 +63,7 @@ window.addEventListener("load", function (event) {
     var settingsDom = document.getElementById("settings");
     var closeButtonDom = document.getElementById("close-button");
     var openButtonDom = document.getElementById("open-button");
+    var saveAsPngDom = document.getElementById("save-as-png");
     var widthCrossDom = document.getElementById("width-cross");
     var areaSizeDom = document.getElementById("area-size");
     var lineWidthDom = document.getElementById("line-width");
@@ -124,6 +125,11 @@ window.addEventListener("load", function (event) {
             settingsDom.style.display = "none";
             openButtonDom.style.display = "block";
             closeButtonDom.style.display = "none";
+        });
+    }
+    if (saveAsPngDom) {
+        saveAsPngDom.addEventListener("click", function (event) {
+            event.target.href = getCanvas().toDataURL("image/png");
         });
     }
 });

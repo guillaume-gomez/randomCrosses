@@ -75,6 +75,8 @@ window.addEventListener("load", function(event) {
   const settingsDom = document.getElementById("settings");
   const closeButtonDom = document.getElementById("close-button");
   const openButtonDom = document.getElementById("open-button");
+
+  const saveAsPngDom = document.getElementById("save-as-png");
   
   const widthCrossDom = document.getElementById("width-cross");
   const areaSizeDom = document.getElementById("area-size");
@@ -147,6 +149,12 @@ window.addEventListener("load", function(event) {
       settingsDom.style.display = "none";
       openButtonDom.style.display = "block";
       closeButtonDom.style.display = "none";
+    });
+  }
+
+  if(saveAsPngDom) {
+    saveAsPngDom.addEventListener("click", (event: any) => {
+      event.target.href = getCanvas().toDataURL("image/png");
     });
   }
 
