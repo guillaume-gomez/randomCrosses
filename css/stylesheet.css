@@ -1,3 +1,12 @@
+body {
+  background: #121212;
+  color: white;
+}
+
+a {
+  color: grey;
+}
+
 #canvas{
   border: solid 1px black;
   width:  100%;
