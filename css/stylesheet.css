@@ -1,6 +1,7 @@
 body {
   background: #121212;
   color: white;
+  font-family: 'Biryani', sans-serif;
 }
 
 a {
@@ -14,19 +15,69 @@ a {
 }
 
 #settings {
-  padding: 6px 0;
+  display: flex;
+  flex-direction: column;
   display: inline-block;
-  margin: 0 0.5rem;
-
+  
   animation: fadeInLeft; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 0.5s; /* don't forget to set a duration! */
 }
 
 #main {
+  //border: 2px solid purple;
   display: flex;
   flex-direction: row;
+  column-gap: 24px;
 }
 
 #settings-layout {
+  //border: 2px solid blue;
+  padding: 12px;
+  border-radius: 3px;
+  background: #202020;
+}
+
+#canvas-layout {
+  width: 100%;
+  padding: 12px;
+  border-radius: 3px;
+  background: #202020;
+}
+
+#header-settings {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding-bottom: 12px;
+}
+
+#form {
+  //border: 2px solid blue;
+  display: flex;
+  flex-direction: column;
   padding: 6px;
+}
+
+.form-item {
+  //border: 2px solid red;
+  min-width: 200px;
+  padding: 6px 0;
+}
+
+.input-and-value {
+  //border: 2px solid pink;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#close-button {
+  //border:  2px solid green;
+  cursor: pointer;
+}
+
+
+#open-button {
+  //border:  2px solid orange;
+  cursor: pointer;
 }

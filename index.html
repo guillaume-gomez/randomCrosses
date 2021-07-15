@@ -9,57 +9,84 @@
   <link rel="apple-touch-icon" href="icon.png">
   <!-- Place favicon.ico in the root directory -->
   <link rel="stylesheet" href="css/stylesheet.css">
-
+  <!-- animate libray -->
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
   />
+  <!-- icons -->
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <!-- font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Biryani:wght@300&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <h1>Random Crosses</h1>
   <div id="main">
     <div id="settings-layout">
       <div id="open-button">
-        Open
+        <i class="fas fa-sliders-h"></i>
       </div>
       <div id="settings">
-        <div id="close-button">
-          Close
+        <div id="header-settings">
+          <span>Settings</span>
+          <div id="close-button">
+            <i class="far fa-window-close"></i>
+          </div>
         </div>
-        <p>Settings:</p>
+        <div id="form">
+          <div class="form-item">
+            <label for="width-cross">Size</label>
+            <div class="input-and-value">
+              <input type="range" id="width-cross" name="width-cross" min="0" max="25" value="20">
+              <span>20</span>
+            </div>
+          </div>
 
-        <div>
-          <input type="range" id="width-cross" name="width-cross" min="0" max="25">
-          <label for="width-cross">WidthCross</label>
-        </div>
+          <div class="form-item">
+            <label for="line-width">Thickness</label>
+            <div class="input-and-value">
+              <input type="range" id="line-width" name="line-width" min="0" max="20" value="5">
+              <span>5</span>
+            </div>
+          </div>
 
-        <div>
-          <input type="range" id="area-size" name="area-size" min="0" max="50">
-          <label for="area-size">AreaSize</label>
-        </div>
+          <div class="form-item">
+            <label for="area-size">Spawn area</label>
+            <div class="input-and-value">
+              <input type="range" id="area-size" name="area-size" min="10" max="200" value="50">
+              <span>50</span>
+            </div>
+          </div>
 
-        <div>
-          <input type="range" id="line-width" name="line-width" min="0" max="20">
-          <label for="line-width">LineWidth</label>
-        </div>
+          <div class="form-item">
+            <label for="percentage-appears">Percentage appears</label>
+            <div class="input-and-value">
+              <input type="range" id="percentage-appears" name="percentage-appears" min="0" max="100" value="50">
+              <span>50</span>
+            </div>
+          </div>
 
-        <div>
-          <input type="range" id="percentage-appears" name="percentage-appears" min="0" max="100">
-          <label for="percentage-appears">Percentage appears</label>
-        </div>
+          <div class="form-item">
+            <label for="angle">Angle</label>
+            <div class="input-and-value">
+              <input type="range" id="angle" name="angle" min="0" max="90" value="0">
+              <span>0</span>
+            </div>
+          </div>
 
-        <div>
-          <input type="range" id="angle" name="angle" min="0" max="90">
-          <label for="angle">Angle</label>
-        </div>
+          <div class="form-item">
+            <label for="background">Background</label>
+            <div class="input-and-value">
+              <input type="color" id="background" name="background" value="#ff0000">
+            </div>
+          </div>
 
-        <div>
-          <input type="color" id="background" name="background" value="#ff0000">
-          <label for="background">Background</label>
-        </div>
-
-        <div>
-          <a id="save-as-png" href="test" download="myImage">Save as PNG</a>
+          <div>
+            <a id="save-as-png" href="test" download="myImage">Save as PNG</a>
+          </div>
         </div>
       </div>
     </div>

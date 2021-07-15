@@ -96,6 +96,7 @@ window.addEventListener("load", function(event) {
   if(widthCrossDom) {
     widthCrossDom.addEventListener("change", (event : any) => {
       widthCross = parseInt(event.target.value, 10);
+      (widthCrossDom as Element).nextElementSibling!.innerHTML = event.target.value;
       draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
     });
   }
@@ -103,6 +104,7 @@ window.addEventListener("load", function(event) {
   if(areaSizeDom) {
     areaSizeDom.addEventListener("change", (event : any) => {
       areaSize = parseInt(event.target.value, 10);
+      (areaSizeDom as Element).nextElementSibling!.innerHTML = event.target.value;
       draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
     });
   }
@@ -110,13 +112,15 @@ window.addEventListener("load", function(event) {
   if(lineWidthDom) {
     lineWidthDom.addEventListener("change", (event : any) => {
       lineWidth = parseInt(event.target.value, 10);
+      (lineWidthDom as Element).nextElementSibling!.innerHTML = event.target.value;
       draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
     });
   }
 
   if(percentageAppearsDom) {
     percentageAppearsDom.addEventListener("change", (event : any) => {
-      percentageAppears = parseInt(event.target.value, 10);
+      percentageAppears = 100 - parseInt(event.target.value, 10);
+      (percentageAppearsDom as Element).nextElementSibling!.innerHTML = event.target.value;
       draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
     });
   }
@@ -124,6 +128,7 @@ window.addEventListener("load", function(event) {
   if(angleDom) {
     angleDom.addEventListener("change", (event : any) => {
       angle = parseInt(event.target.value, 10);
+      (angleDom as Element).nextElementSibling!.innerHTML = event.target.value;
       draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
     });
   }
@@ -140,14 +145,14 @@ window.addEventListener("load", function(event) {
     settingsDom.style.display = "none";
 
     openButtonDom.addEventListener("click", () => {
-      settingsDom.style.display = "block";
+      settingsDom.style.display = "flex";
       openButtonDom.style.display = "none";
-      closeButtonDom.style.display = "block";
+      closeButtonDom.style.display = "flex";
     });
 
     closeButtonDom.addEventListener("click", () => {
       settingsDom.style.display = "none";
-      openButtonDom.style.display = "block";
+      openButtonDom.style.display = "flex";
       closeButtonDom.style.display = "none";
     });
   }

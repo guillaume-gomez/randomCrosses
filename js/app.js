@@ -80,30 +80,35 @@ window.addEventListener("load", function (event) {
     if (widthCrossDom) {
         widthCrossDom.addEventListener("change", function (event) {
             widthCross = parseInt(event.target.value, 10);
+            widthCrossDom.nextElementSibling.innerHTML = event.target.value;
             draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
         });
     }
     if (areaSizeDom) {
         areaSizeDom.addEventListener("change", function (event) {
             areaSize = parseInt(event.target.value, 10);
+            areaSizeDom.nextElementSibling.innerHTML = event.target.value;
             draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
         });
     }
     if (lineWidthDom) {
         lineWidthDom.addEventListener("change", function (event) {
             lineWidth = parseInt(event.target.value, 10);
+            lineWidthDom.nextElementSibling.innerHTML = event.target.value;
             draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
         });
     }
     if (percentageAppearsDom) {
         percentageAppearsDom.addEventListener("change", function (event) {
-            percentageAppears = parseInt(event.target.value, 10);
+            percentageAppears = 100 - parseInt(event.target.value, 10);
+            percentageAppearsDom.nextElementSibling.innerHTML = event.target.value;
             draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
         });
     }
     if (angleDom) {
         angleDom.addEventListener("change", function (event) {
             angle = parseInt(event.target.value, 10);
+            angleDom.nextElementSibling.innerHTML = event.target.value;
             draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
         });
     }
@@ -117,13 +122,13 @@ window.addEventListener("load", function (event) {
     if (settingsDom && openButtonDom && closeButtonDom) {
         settingsDom.style.display = "none";
         openButtonDom.addEventListener("click", function () {
-            settingsDom.style.display = "block";
+            settingsDom.style.display = "flex";
             openButtonDom.style.display = "none";
-            closeButtonDom.style.display = "block";
+            closeButtonDom.style.display = "flex";
         });
         closeButtonDom.addEventListener("click", function () {
             settingsDom.style.display = "none";
-            openButtonDom.style.display = "block";
+            openButtonDom.style.display = "flex";
             closeButtonDom.style.display = "none";
         });
     }
