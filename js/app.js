@@ -31,7 +31,6 @@ function getContext(canvas) {
 function createCross(context, widthCross, x, y, angle, crossesColor) {
     context.save();
     context.strokeStyle = crossesColor;
-    console.log(crossesColor);
     context.rotate(angle);
     context.beginPath();
     context.moveTo(x, y + widthCross / 2);
