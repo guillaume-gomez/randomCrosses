@@ -4,3 +4,8 @@ The cover of the book [Controverses Mode d'emploi by SciencesPo les presses](htt
 
 
 [try by yourself](https://guillaume-gomez.github.io/randomCrosses/)
+
+
+## Example
+
+![example](./example.png)
