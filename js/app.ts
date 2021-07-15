@@ -13,7 +13,7 @@ function getRandomArbitrary(min : number, max : number) :number {
 
 function setBackgroundColor(canvas: HTMLCanvasElement, backgroundColor: string) : void {
   let ctx = getContext(canvas);
-  ctx.fillStyle = backgroundColor; //getRandomColor();
+  ctx.fillStyle = backgroundColor;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -33,8 +33,17 @@ function getContext(canvas: HTMLCanvasElement) : CanvasRenderingContext2D {
   return context;
 }
 
-function createCross(context: CanvasRenderingContext2D, widthCross: number, x: number, y: number, angle: number) : void {
+function createCross(
+    context: CanvasRenderingContext2D,
+    widthCross: number,
+    x: number,
+    y: number,
+    angle: number,
+    crossesColor: string
+  ) : void {
   context.save();
+
+  context.strokeStyle = crossesColor;
   context.rotate(angle);
 
   context.beginPath();
@@ -49,7 +58,15 @@ function createCross(context: CanvasRenderingContext2D, widthCross: number, x: n
   context.restore();
 }
 
-function draw(widthCross: number, lineWidth: number, areaSize: number, percentageAppears: number, angle: number, backgroundColor: string) {
+function draw(
+    widthCross: number,
+    lineWidth: number,
+    areaSize: number,
+    percentageAppears: number,
+    angle: number,
+    backgroundColor: string,
+    crossesColor: string
+  ) {
   let canvas = getCanvas();
   let context = getContext(canvas);
   context.canvas.width  = window.innerWidth;
@@ -65,7 +82,7 @@ function draw(widthCross: number, lineWidth: number, areaSize: number, percentag
         const y = getRandomArbitrary(_y, _y + areaSize - widthCross);
         const angleInDeg = getRandomArbitrary(-angle, angle);
         const angleInRand = angleInDeg * Math.PI / 180;
-        createCross(context, widthCross, x, y, angleInRand);
+        createCross(context, widthCross, x, y, angleInRand, crossesColor);
       }
     }
   }
@@ -84,6 +101,7 @@ window.addEventListener("load", function(event) {
   const percentageAppearsDom = document.getElementById("percentage-appears");
   const angleDom = document.getElementById("angle");
   const backgroundColorDom = document.getElementById("background");
+  const crossesColorDom = document.getElementById("crosses-color");
 
   let widthCross = 20;
   let areaSize = 50;
@@ -91,13 +109,15 @@ window.addEventListener("load", function(event) {
   let percentageAppears = 50; //%
   let angle = 0;
   let backgroundColor = "#ff0000";
-  draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+  let crossesColor = "#000000";
+
+  draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
 
   if(widthCrossDom) {
     widthCrossDom.addEventListener("change", (event : any) => {
       widthCross = parseInt(event.target.value, 10);
       (widthCrossDom as Element).nextElementSibling!.innerHTML = event.target.value;
-      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
     });
   }
 
@@ -105,7 +125,7 @@ window.addEventListener("load", function(event) {
     areaSizeDom.addEventListener("change", (event : any) => {
       areaSize = parseInt(event.target.value, 10);
       (areaSizeDom as Element).nextElementSibling!.innerHTML = event.target.value;
-      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
     });
   }
 
@@ -113,7 +133,7 @@ window.addEventListener("load", function(event) {
     lineWidthDom.addEventListener("change", (event : any) => {
       lineWidth = parseInt(event.target.value, 10);
       (lineWidthDom as Element).nextElementSibling!.innerHTML = event.target.value;
-      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
     });
   }
 
@@ -121,7 +141,7 @@ window.addEventListener("load", function(event) {
     percentageAppearsDom.addEventListener("change", (event : any) => {
       percentageAppears = 100 - parseInt(event.target.value, 10);
       (percentageAppearsDom as Element).nextElementSibling!.innerHTML = event.target.value;
-      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
     });
   }
   
@@ -129,14 +149,21 @@ window.addEventListener("load", function(event) {
     angleDom.addEventListener("change", (event : any) => {
       angle = parseInt(event.target.value, 10);
       (angleDom as Element).nextElementSibling!.innerHTML = event.target.value;
-      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
     });
   }
 
   if(backgroundColorDom) {
     backgroundColorDom.addEventListener("change", (event : any) => {
       backgroundColor = event.target.value;
-      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor);
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
+    });
+  }
+
+  if(crossesColorDom) {
+    crossesColorDom.addEventListener("change", (event : any) => {
+      crossesColor = event.target.value;
+      draw(widthCross, lineWidth, areaSize, percentageAppears, angle, backgroundColor, crossesColor);
     });
   }
 
